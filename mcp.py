@@ -56,7 +56,7 @@ app.add_middleware(
 )
 
 @app.get("/")
-def read_root():
+def home():
     return {"message": "Welcome to MCP Weather API"} 
 
 
