@@ -1,7 +1,7 @@
 services:
   - type: web
-    name: mcp-weather-service
+    name: mcp-weather
     env: python
     branch: main
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn mcp:app --bind 0.0.0.0:10000"
+    startCommand: "gunicorn mcp:app"
