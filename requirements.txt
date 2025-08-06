@@ -1,16 +1,13 @@
 fastapi
-uvicorn[standard]
+uvicorn
+gunicorn
 python-dotenv
 openrouteservice
 meteomatics
-geopy 
-fastapi
-uvicorn
+pandas
 httpx
-aiohttp
-python-multipart
-jinja2
-gunicorn mcp:app
+geopy
+requests
 
 
 
