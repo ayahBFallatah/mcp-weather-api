@@ -1,10 +1,11 @@
 fastapi
 uvicorn
-gunicorn
 python-dotenv
 openrouteservice
 meteomatics
 pandas
 httpx
 geopy
-requests #pip install -r requirements.txt
+requests
+gunicorn
+#pip install -r requirements.txt

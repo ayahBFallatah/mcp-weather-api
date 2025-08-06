@@ -1,1 +1,1 @@
-web: gunicorn mcp:app --bind 0.0.0.0:10000
+uvicorn mcp:app --host=0.0.0.0 --port=10000
