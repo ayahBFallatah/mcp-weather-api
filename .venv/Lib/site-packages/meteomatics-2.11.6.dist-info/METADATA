@@ -1,0 +1,47 @@
+Metadata-Version: 2.4
+Name: meteomatics
+Version: 2.11.6
+Summary: Meteomatics API connector
+Home-page: https://github.com/meteomatics/python-connector-api
+Author: Meteomatics AG
+Author-email: support@meteomatics.com
+License: MIT
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=2.7.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: isodate>=0.6.0
+Requires-Dist: requests>=2.21.0
+Requires-Dist: pandas>=0.18.1
+Requires-Dist: pathlib2>=2.3.5
+Requires-Dist: pytz
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+
+[![PyPI](https://img.shields.io/pypi/v/meteomatics.svg)](https://pypi.python.org/pypi/meteomatics)
+
+[![logo](https://static.meteomatics.com/meteomatics-logo.png)](http://www.meteomatics.com "Meteomatics - Your Experts in Weather Data Processing")
+
+Python connector to the [Meteomatics Weather API](https://www.meteomatics.com/en/api/overview/ "Documentation Overview")
+===================================================================================
+
+
+Meteomatics provides a REST-style API to retrieve historic, current, and forecast data globally. This includes model data and observational data in time series and areal formats. Areal formats are also offered through a WMS/WFS-compatible interface. Geographic and time series data can be combined in certain file formats, such as NetCDF.
+
+
+Install by typing `pip install meteomatics` in your favourite shell.
+
+For a start we recommend to run the example script.
