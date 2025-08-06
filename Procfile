@@ -1,1 +1,1 @@
-web: uvicorn mcp:app --host=0.0.0.0 --port=$PORT
+web: gunicorn -w 1 -k uvicorn.workers.UvicornWorker mcp:app
