@@ -10,5 +10,8 @@ httpx
 aiohttp
 python-multipart
 jinja2
+gunicorn mcp:app
+
+
 
 #pip install -r requirements.txt
