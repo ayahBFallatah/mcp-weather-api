@@ -4,11 +4,8 @@
   <meta charset="UTF-8" />
   <title>Smart Weather Route Planner</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts - Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link
     rel="stylesheet"
@@ -20,7 +17,7 @@
       direction: rtl;
       padding: 0;
       margin: 0;
-      background: linear-gradient(to bottom right, #e0f2fe, #bbdefb); /* خلفية متدرجة زرقاء فاتحة */
+      background: linear-gradient(to bottom right, #ffffff, #ffffff);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -28,8 +25,8 @@
     }
     .main-card {
       background-color: #ffffff;
-      border-radius: 16px; /* حواف أكثر استدارة */
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* ظل أكبر */
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       overflow: hidden;
       width: 95%;
       max-width: 1200px;
@@ -37,62 +34,62 @@
       box-sizing: border-box;
     }
     #map { height: 450px; border-radius: 12px; overflow: hidden; margin-top: 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
-    .container { padding: 0; max-width: none; margin: auto; } /* إزالة التعبئة الزائدة */
+    .container { padding: 0; max-width: none; margin: auto; }
     .cards { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; justify-content: center; }
     .card {
       border: 1px solid #e0e0e0;
       border-radius: 12px;
       padding: 1rem;
-      flex: 1 1 280px; /* حجم أكبر للبطاقات */
+      flex: 1 1 280px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       background:#fff;
       position: relative;
       transition: transform 0.2s ease-in-out;
     }
     .card:hover {
-      transform: translateY(-5px); /* تأثير رفع عند التحويم */
+      transform: translateY(-5px);
     }
     .alert-log { margin-top: 1.5rem; background-color: #f8f8f8; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .alert-item { background: #fff5f5; padding: 0.75rem; border-radius: 8px; margin-bottom: 0.75rem; border-left: 5px solid #e53e3e; } /* حجم أكبر وتعبئة أكثر */
-    .summary { background: #e8f4ff; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 500; border: 1px solid #cce0ff; } /* حجم خط أكبر */
-    .highlight { font-weight: bold; color: #1e40af; } /* لون أزرق داكن للتمييز */
-    .risk-badge { padding: 6px 14px; border-radius: 20px; color: #fff; font-size: 0.85rem; display:inline-block; font-weight: 600; } /* حجم أكبر وشكل بيضاوي */
-    .risk-low { background: #10b981; }       /* أخضر داكن */
-    .risk-medium { background: #f59e0b; }    /* برتقالي أغمق */
-    .risk-high { background: #ef4444; }      /* أحمر أغمق */
+    .alert-item { background: #fff5f5; padding: 0.75rem; border-radius: 8px; margin-bottom: 0.75rem; border-left: 5px solid #e53e3e; }
+    .summary { background: #e8f4ff; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 500; border: 1px solid #cce0ff; }
+    .highlight { font-weight: bold; color: #1e40af; }
+    .risk-badge { padding: 6px 14px; border-radius: 20px; color: #fff; font-size: 0.85rem; display:inline-block; font-weight: 600; }
+    .risk-low { background: #facc15; }
+    .risk-medium { background: #fb923c; }
+    .risk-high { background: #ef4444; }
     .alert-source { font-size: 0.7rem; color: #6b7280; margin-top: 4px; }
-    .flex-inputs { display:flex; gap:1.5rem; flex-wrap: wrap; align-items:flex-end; } /* تباعد أكبر */
+    .flex-inputs { display:flex; gap:1.5rem; flex-wrap: wrap; align-items:flex-end; }
     .small { font-size:0.9rem; }
-    input[type="text"], input[type="datetime-local"], select { /* إضافة select */
-      padding: 10px 12px; /* تعبئة أكبر */
+    input[type="text"], input[type="datetime-local"], select {
+      padding: 10px 12px;
       border: 1px solid #d1d5db;
-      border-radius: 8px; /* حواف أكثر استدارة */
+      border-radius: 8px;
       width: 100%;
       box-sizing: border-box;
       font-size: 1rem;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
-    input[type="text"]:focus, input[type="datetime-local"]:focus, select:focus { /* إضافة select */
+    input[type="text"]:focus, input[type="datetime-local"]:focus, select:focus {
       border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* ظل أزرق عند التركيز */
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
       outline: none;
     }
     label {
       font-size: 0.95rem;
       color: #4b5563;
       margin-bottom: 6px;
-      display: flex; /* لتمكين الأيقونة */
+      display: flex;
       align-items: center;
       font-weight: 500;
     }
     label i {
-      margin-left: 8px; /* مسافة بين الأيقونة والنص */
-      color: #3b82f6; /* لون أزرق للأيقونات */
+      margin-left: 8px;
+      color: #3b82f6;
     }
     #planBtn {
-      padding: 12px 24px; /* حجم أكبر للزر */
+      padding: 12px 24px;
       border: none;
-      background: linear-gradient(to right, #3b82f6, #2563eb); /* تدرج أزرق */
+      background: linear-gradient(to right, #3b82f6, #2563eb);
       color:#fff;
       border-radius: 8px;
       cursor:pointer;
@@ -114,30 +111,30 @@
         font-size: 1.1rem;
     }
     .error-message {
-        color: #ef4444; /* أحمر داكن */
+        color: #ef4444;
         margin-top: 1.5rem;
         font-weight: bold;
         text-align: center;
         font-size: 1.1rem;
-        background-color: #fee2e2; /* خلفية حمراء فاتحة */
+        background-color: #fee2e2;
         border: 1px solid #fca5a5;
         padding: 1rem;
         border-radius: 8px;
     }
     h1 {
-      font-size: 2.5rem; /* حجم أكبر للعنوان */
+      font-size: 2.5rem;
       font-weight: 700;
-      color: #1e40af; /* لون أزرق داكن */
+      color: #1e40af;
       text-align: center;
       margin-bottom: 2rem;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
     }
     h2 {
-      font-size: 1.8rem; /* حجم أكبر للعناوين الفرعية */
+      font-size: 1.8rem;
       font-weight: 600;
       color: #1e40af;
       margin-bottom: 1rem;
-      border-bottom: 2px solid #bfdbfe; /* خط تحت العنوان */
+      border-bottom: 2px solid #bfdbfe;
       padding-bottom: 0.5rem;
     }
     ul { list-style: none; padding: 0; }
@@ -150,26 +147,33 @@
 
     <div class="flex-inputs">
       <div style="flex: 1 1 250px;">
-        <label for="start_city_display"><i class="fas fa-map-marker-alt"></i> مدينة البداية:</label>
-        <input id="start_city_display" type="text" value="جدة" disabled style="background-color: #f0f4f8; cursor: not-allowed;"/>
-        <input id="start_coords" type="hidden" value="21.5504,39.1742" />
+        <label for="start_city"><i class="fas fa-map-marker-alt"></i> مدينة البداية:</label>
+        <select id="start_city" class="bg-white">
+            <option value="">اختر مدينة</option>
+            <option value="جدة">جدة</option>
+            <option value="الرياض">الرياض</option>
+            <option value="الدمام">الدمام</option>
+            <option value="مكة المكرمة">مكة المكرمة</option>
+            <option value="المدينة المنورة">المدينة المنورة</option>
+            <option value="الطائف">الطائف</option>
+            <option value="أبها">أبها</option>
+            <option value="تبوك">تبوك</option>
+            <option value="بريدة">بريدة</option>
+        </select>
       </div>
       <div style="flex: 1 1 250px;">
-        <label for="end_city_select"><i class="fas fa-map-marker-alt"></i> مدينة النهاية:</label>
-        <select id="end_city_select">
-          <option value="24.7136,46.6753,الرياض">الرياض</option>
-          <option value="26.3927,50.1977,الدمام">الدمام</option>
-          <option value="21.4225,39.8262,مكة المكرمة">مكة المكرمة</option>
-          <option value="24.5247,39.5692,المدينة المنورة">المدينة المنورة</option>
-          <option value="18.2164,42.5053,أبها">أبها</option>
-          <option value="28.3996,36.5706,تبوك">تبوك</option>
-          <option value="26.3260,43.9749,بريدة (القصيم)">بريدة (القصيم)</option>
-          <option value="17.4925,44.1332,نجران">نجران</option>
-          <option value="27.5256,41.6961,حائل">حائل</option>
-          <option value="29.9698,40.1005,سكاكا (الجوف)">سكاكا (الجوف)</option>
-          <option value="30.9833,41.0167,عرعر (الحدود الشمالية)">عرعر (الحدود الشمالية)</option>
-          <option value="16.8893,42.5606,جازان">جازان</option>
-          <option value="20.0167,41.4667,الباحة">الباحة</option>
+        <label for="end_city"><i class="fas fa-map-marker-alt"></i> مدينة النهاية:</label>
+        <select id="end_city" class="bg-white">
+            <option value="">اختر مدينة</option>
+            <option value="جدة">جدة</option>
+            <option value="الرياض">الرياض</option>
+            <option value="الدمام">الدمام</option>
+            <option value="مكة المكرمة">مكة المكرمة</option>
+            <option value="المدينة المنورة">المدينة المنورة</option>
+            <option value="الطائف">الطائف</option>
+            <option value="أبها">أبها</option>
+            <option value="تبوك">تبوك</option>
+            <option value="بريدة">بريدة</option>
         </select>
       </div>
       <div style="flex: 1 1 250px;">
@@ -184,13 +188,19 @@
     <div id="loadingIndicator">جاري تخطيط الرحلة... <i class="fas fa-spinner fa-spin"></i></div>
     <div id="errorMessage" class="error-message"></div>
 
-    <div id="routeSummary" class="summary"></div>
+    <div id="routeSummary" class="summary" style="display:none;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.5rem;">
+        <div class="text-lg font-semibold text-gray-800">ملخص عام للمسار</div>
+        <div class="risk-badge" id="overallRiskBadge"></div>
+      </div>
+      <div id="routeSummaryText" class="small text-gray-700 mt-2"></div>
+    </div>
 
     <div id="map"></div>
-
+    
     <div style="margin-top:2rem;">
-      <h2><i class="fas fa-cloud-sun"></i> حالة الطقس عند النقاط</h2>
-      <div id="weatherCards" class="cards"></div>
+      <h2><i class="fas fa-cloud-sun"></i> توقعات الطقس على طول المسار</h2>
+      <div class="cards" id="weatherCardsContainer"></div>
     </div>
 
     <div style="margin-top:2rem;">
@@ -201,10 +211,9 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    // Set default departure time to current time + 1 hour for convenience
     document.addEventListener('DOMContentLoaded', () => {
         const now = new Date();
-        now.setHours(now.getHours() + 1); // Set to 1 hour from now
+        now.setHours(now.getHours() + 1);
         const year = now.getFullYear();
         const month = (now.getMonth() + 1).toString().padStart(2, '0');
         const day = now.getDate().toString().padStart(2, '0');
@@ -233,37 +242,43 @@
 
     const loadingIndicator = document.getElementById('loadingIndicator');
     const errorMessageDiv = document.getElementById('errorMessage');
+    const routeSummaryDiv = document.getElementById('routeSummary');
+    const overallRiskBadge = document.getElementById('overallRiskBadge');
+    const routeSummaryText = document.getElementById('routeSummaryText');
+    const weatherCardsContainer = document.getElementById('weatherCardsContainer');
+    const alertsLogDiv = document.getElementById('alertsLog');
+
 
     document.getElementById("planBtn").addEventListener("click", async () => {
-      errorMessageDiv.textContent = ''; // Clear previous errors
-      loadingIndicator.style.display = 'block'; // Show loading
+      errorMessageDiv.textContent = '';
+      loadingIndicator.style.display = 'block';
+      routeSummaryDiv.style.display = 'none';
+      weatherCardsContainer.innerHTML = '';
+      alertsLogDiv.innerHTML = '';
 
-      const startCoordsStr = document.getElementById("start_coords").value;
-      const endCitySelect = document.getElementById("end_city_select");
-      const endCoordsStr = endCitySelect.value.split(',').slice(0, 2).join(','); // Get coords from selected option
-      const endCityName = endCitySelect.options[endCitySelect.selectedIndex].text; // Get city name from selected option
-
+      const startCity = document.getElementById("start_city").value;
+      const endCity = document.getElementById("end_city").value;
       const departure = document.getElementById("departure").value;
 
-      if (!startCoordsStr || !endCoordsStr || !departure) {
-        errorMessageDiv.textContent = "الرجاء تحديد مدينة البداية والنهاية ووقت المغادرة.";
-        loadingIndicator.style.display = 'none'; // Hide loading
+      if (!startCity || !endCity || !departure) {
+        errorMessageDiv.textContent = "الرجاء إدخال جميع بيانات مدينة البداية والنهاية ووقت المغادرة.";
+        loadingIndicator.style.display = 'none';
+        return;
+      }
+      if (startCity === endCity) {
+        errorMessageDiv.textContent = "يجب أن تكون مدينة البداية والنهاية مختلفتين.";
+        loadingIndicator.style.display = 'none';
         return;
       }
 
-      const startCoords = startCoordsStr.split(',').map(Number);
-      const endCoords = endCoordsStr.split(',').map(Number);
-
       const payload = {
-        start_coords: startCoords,
-        end_coords: endCoords,
-        departure_time: new Date(departure).toISOString(),
-        start_city: document.getElementById("start_city_display").value, // لإرسال اسم المدينة للتلخيص في الخلفية
-        end_city: endCityName // لإرسال اسم المدينة للتلخيص في الخلفية
+        start_city: startCity,
+        end_city: endCity,
+        departure_time: new Date(departure).toISOString()
       };
 
       try {
-        const res = await fetch("https://mcp-weather-api.up.railway.app/...", {
+        const res = await fetch("http://127.0.0.1:8000/plan_travel_weather_route", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
@@ -286,100 +301,84 @@
         console.error("Fetch error:", e);
         errorMessageDiv.textContent = "فشل الاتصال بالخادم أو في البيانات: " + e.message;
       } finally {
-        loadingIndicator.style.display = 'none'; // Hide loading
+        loadingIndicator.style.display = 'none';
       }
     });
 
     function displayResult(data) {
       errorMessageDiv.textContent = '';
-
-      // Route Summary
-      document.getElementById("routeSummary").textContent = data.route_summary || "";
-
-      // Route Map
+      routeSummaryDiv.style.display = 'block';
+      routeSummaryText.textContent = data.route_summary || "";
+      overallRiskBadge.className = `risk-badge ${riskColor(data.overall_risk)}`;
+      overallRiskBadge.textContent = data.overall_risk;
+      
       if (routeLayer) map.removeLayer(routeLayer);
       if (data.route_map && data.route_map.features && data.route_map.features.length > 0) {
         routeLayer = L.geoJSON(data.route_map, { style: { color: "#1e40af", weight: 5, opacity: 0.7 } }).addTo(map);
         map.fitBounds(routeLayer.getBounds(), { padding: [50,50] });
       } else {
-        errorMessageDiv.textContent = "لم يتم العثور على مسار صالح بين المدينتين المحددتين. يرجى التحقق من أسماء المدن أو وجود طريق قابل للتوجيه بينهما.";
-        map.setView([23.5, 45], 6); // Reset map view if no route
+        errorMessageDiv.textContent = "لم يتم العثور على مسار صالح لهذه المدن. يرجى التحقق من أسماء المدن.";
+        map.setView([23.5, 45], 6);
       }
 
-      // Clear old markers
       markersGroup.clearLayers();
-
-      // Weather Cards and Alerts Log
-      const cardsDiv = document.getElementById("weatherCards");
-      cardsDiv.innerHTML = "";
-      const alertsLogDiv = document.getElementById("alertsLog");
+      weatherCardsContainer.innerHTML = "";
       alertsLogDiv.innerHTML = "";
 
-      if (data.weather_along_route && Object.keys(data.weather_along_route).length > 0) {
-          for (const key in data.weather_along_route) {
-            const entry = data.weather_along_route[key];
-            const coord = entry.coord || [0,0];
-            const unified = entry.unified_risk || "غير معروف";
-
-            // Weather Card
-            const card = document.createElement("div");
-            card.className = "card";
-            card.innerHTML = `
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.5rem;">
-                <div class="text-lg font-semibold text-gray-800">${key}</div>
-                <div class="risk-badge ${riskColor(unified)}">${unified}</div>
-              </div>
-              <div class="small text-gray-600 mb-2">إحداثيات: ${coord[0].toFixed(4)}, ${coord[1].toFixed(4)}</div>
-              <div style="margin-top:6px;"><strong>ملخص الطقس:</strong> ${entry.forecast_summary || "-"}</div>
-              <div class="small text-gray-700 mt-2">
-                درجة الحرارة: ${entry.forecast_card?.temperature || "-"} |
-                أمطار: ${entry.forecast_card?.precipitation || "-"} |
-                رياح: ${entry.forecast_card?.wind_speed || "-"}
-              </div>
-              <div style="margin-top:1rem;">
-                <strong class="text-gray-800">الإنذارات:</strong>
-                <ul style="padding-right:0; margin:4px 0;">
-                  ${
-                    (entry.alerts || []).length > 0 ?
-                    (entry.alerts || []).map(a => {
-                      return `<li class="border-b border-gray-100 pb-1 mb-1 last:border-b-0 last:pb-0 last:mb-0">
-                        <div class="text-gray-800">${a.message}</div>
-                        <div class="alert-source">المصدر: ${a.source} | المستوى: ${a.level}</div>
-                        <div class="small text-gray-600">توصية: ${a.recommendation || "-"}</div>
-                      </li>`;
-                    }).join("") : '<li>لا توجد إنذارات</li>'
-                  }
-                </ul>
-              </div>
-            `;
-            cardsDiv.appendChild(card);
-
-            // Marker on Map
-            const marker = L.circleMarker(coord, { radius: 8, weight: 1, fillOpacity: 0.9, color: '#000', fillColor: unified === 'عالي' ? '#ef4444' : unified === 'متوسط' ? '#f59e0b' : unified === 'منخفض' ? '#10b981' : '#6b7280' }).addTo(markersGroup);
-            const popupParts = [];
-            popupParts.push(`<div><strong>${key}</strong> - <span class="risk-badge ${riskColor(unified)}">${unified}</span></div>`);
-            if (entry.forecast_summary) popupParts.push(`<div>${entry.forecast_summary}</div>`);
-            if (entry.alerts && entry.alerts.length) {
-              popupParts.push(`<div><em>الإنذارات:</em></div>`);
-              entry.alerts.forEach(a => {
-                popupParts.push(`<div style="font-size:0.8rem;">• ${a.message} (${a.source}, ${a.level})</div>`);
-              });
-            }
-            marker.bindPopup(popupParts.join(""));
-
-            // Detailed Alerts Log
-            (entry.alerts || []).forEach(a => {
-              const alertDiv = document.createElement("div");
-              alertDiv.className = "alert-item";
-              alertDiv.innerHTML = `
-                <div><strong>${key}</strong> - ${a.message}</div>
-                <div class="small">المصدر: ${a.source} | المستوى: ${a.level} | توصية: ${a.recommendation || "-"}</div>
-              `;
-              alertsLogDiv.appendChild(alertDiv);
-            });
+      if (data.weather_along_route && data.weather_along_route.length > 0) {
+        data.weather_along_route.forEach(pointData => {
+          if (pointData.error) {
+            console.error("Error for point:", pointData.error);
+            return; 
           }
+          const card = document.createElement('div');
+          card.className = 'card';
+          
+          const time = new Date(pointData.arrival_time).toLocaleTimeString('ar-SA', { hour: '2-digit', minute: '2-digit' });
+          const locationName = pointData.location_name || 'نقطة على الطريق';
+
+          const summary = pointData.forecast_card;
+          const riskLevel = pointData.unified_risk;
+
+          card.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.5rem;">
+              <div class="text-xl font-semibold text-gray-800">${locationName}</div>
+              <div class="risk-badge ${riskColor(riskLevel)}">${riskLevel}</div>
+            </div>
+            <div class="small text-gray-500 mb-2">الوقت المقدر: <span class="font-bold">${time}</span></div>
+            <div class="small text-gray-700">
+                <i class="fas fa-temperature-three-quarters ml-1"></i> الحرارة: <span class="font-bold">${summary?.temperature || '-'}</span>
+            </div>
+            <div class="small text-gray-700 mt-1">
+                <i class="fas fa-cloud-showers-heavy ml-1"></i> أمطار: <span class="font-bold">${summary?.precipitation || '-'}</span>
+            </div>
+            <div class="small text-gray-700 mt-1">
+                <i class="fas fa-wind ml-1"></i> الرياح: <span class="font-bold">${summary?.wind_speed || '-'}</span>
+            </div>
+          `;
+          weatherCardsContainer.appendChild(card);
+        });
       } else {
-          errorMessageDiv.textContent = "لا توجد بيانات طقس أو تنبيهات للمسار المحدد.";
+        weatherCardsContainer.innerHTML = '<div class="text-center text-gray-500">لا توجد بيانات طقس متاحة للمسار.</div>';
+      }
+
+      if (data.alerts_log && data.alerts_log.length > 0) {
+        const uniqueAlerts = Array.from(new Set(data.alerts_log.map(JSON.stringify))).map(JSON.parse);
+        uniqueAlerts.forEach(a => {
+          const alertDiv = document.createElement("div");
+          alertDiv.className = "alert-item";
+          alertDiv.innerHTML = `
+            <div><strong>إنذار:</strong> ${a.message}</div>
+            <div class="small">
+              الموقع: <span class="font-bold">${a.location_name || 'غير محدد'}</span> |
+              المصدر: ${a.source} |
+              المستوى: <span class="risk-badge ${riskColor(a.level)}">${a.level}</span>
+            </div>
+          `;
+          alertsLogDiv.appendChild(alertDiv);
+        });
+      } else {
+        alertsLogDiv.innerHTML = '<div class="text-center text-gray-500">لا توجد إنذارات للمسار.</div>';
       }
     }
   </script>
