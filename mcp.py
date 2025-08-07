@@ -31,6 +31,7 @@ origins = [
     "http://127.0.0.1:8000",
     "file://",
     "null"
+    "https://ayahbfallatah.github.io"
 ]
 
 app.add_middleware(
