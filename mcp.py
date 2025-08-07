@@ -24,6 +24,9 @@ load_dotenv()
 
 app = FastAPI(title="Smart Weather MCP متكامل")
 
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
 origins = [
     "http://localhost",
     "http://localhost:8000",
