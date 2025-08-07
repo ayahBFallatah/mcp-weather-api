@@ -4,7 +4,7 @@ import os
 import re
 import pandas as pd
 import httpx
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import List, Dict, Any
 from functools import lru_cache
 
@@ -22,7 +22,7 @@ from geopy.exc import GeocoderTimedOut, GeocoderServiceError
 load_dotenv()
 app = FastAPI()
 
-# CORS configuration to allow all origins
+# CORS configuration to allow all origins, all methods, and all headers
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -42,6 +42,7 @@ class TravelRequest(BaseModel):
     start_city: str
     end_city: str
     departure_time: str
+
 
 # ---------- MCP descriptor ----------
 @app.get("/.well-known/mcp")
@@ -439,6 +440,3 @@ def get_route_and_weather(req: TravelRequest) -> Dict[str, Any]:
         "weather_along_route": weather_along,
         "alerts_log": all_alerts_list
     }
-# ---------- تشغيل ---------
-# من سطر الأوامر: uvicorn mcp:app --reload
-# لتشغيل التطبيق
