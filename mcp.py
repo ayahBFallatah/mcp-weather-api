@@ -1,49 +1,41 @@
 # mcp.py
 
 import os
-from datetime import datetime, timedelta, timezone
-from functools import lru_cache
+import re
+import pandas as pd
+import httpx
+from datetime import datetime, timedelta
 from typing import List, Dict, Any
+from functools import lru_cache
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
 from meteomatics import api
 import openrouteservice
 from openrouteservice import exceptions
-import pandas as pd
-import httpx
-import re
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut, GeocoderServiceError
 
-from fastapi.middleware.cors import CORSMiddleware
-
-
+# ---------- إعدادات التطبيق ----------
 load_dotenv()
+app = FastAPI()
 
-app = FastAPI(title="Smart Weather MCP متكامل")
-
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-origins = [
-    "http://localhost",
-    "http://localhost:8000",
-    "http://127.0.0.1",
-    "http://127.0.0.1:8000",
-    "file://",
-    "null"
-    "https://ayahbfallatah.github.io"
-]
-
+# CORS configuration to allow all origins
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# ---------- نقطة نهاية فحص الصحة لـ Render ----------
+@app.get("/")
+def read_root():
+    return {"status": "ok"}
+
 
 # ---------- نماذج الطلب ----------
 class TravelRequest(BaseModel):
@@ -65,6 +57,7 @@ def mcp_descriptor():
             }
         }
     }
+
 
 # ---------- دوال التخزين المؤقت ----------
 @lru_cache(maxsize=128)
@@ -407,8 +400,8 @@ def get_route_and_weather(req: TravelRequest) -> Dict[str, Any]:
                 if reverse_location and reverse_location.address:
                     address_parts = reverse_location.raw.get('address', {})
                     point_location_name = address_parts.get('city') or address_parts.get('town') or \
-                                          address_parts.get('village') or address_parts.get('county') or \
-                                          address_parts.get('state') or ""
+                                             address_parts.get('village') or address_parts.get('county') or \
+                                             address_parts.get('state') or ""
             except Exception:
                 point_location_name = ""
             
